@@ -5,7 +5,7 @@ import java.io.IOException;
 /**
  * Created by anshu on 09/03/17.
  */
-public class lcs {
+public class LCS {
     public static void main(String[] args) throws IOException {
         Reader scan = new Reader();
         System.out.println("enter string a: ");
