@@ -8,11 +8,11 @@ import java.io.IOException;
 public class CoinChange {
     public static void main(String[] args) throws IOException {
         Reader scan = new Reader();
-//        System.out.println("Enter the amount to change: ");
+        System.out.println("Enter the amount to change: ");
         int n = scan.nextInt();
-//        System.out.println("Enter the number of types of coins: ");
+        System.out.println("Enter the number of types of coins: ");
         int m = scan.nextInt();
-//        System.out.println("Enter the value of coins");
+        System.out.println("Enter the value of coins");
         int a[] = new int[m];
         for(int i=0;i<m;i++)
             a[i]=scan.nextInt();
@@ -25,7 +25,7 @@ public class CoinChange {
         int arr[]= new int[n+1];
         arr[0]=1;
         for(int i=0;i<m;i++){
-            for(int j=a[i];j<=n;j++){
+            for(int j=a[i];j<=n;j++){   ///// if each coin can be used only once iterate this from right to left i.e. for(int j=n;j>=a[i]j--)
                 arr[j] += arr[j-a[i]];
             }
         }
@@ -44,7 +44,7 @@ public class CoinChange {
             for(int j=0;j<m;j++){
                 int x=0;
                 if(i-a[j]>=0){
-                    x=arr[i-a[j]][j];
+                    x=arr[i-a[j]][j];    // if each coin can be used only once, x = arr[i-a[j]][j-1]
                 }
                 int y=0;
                 if(j>0)
@@ -70,6 +70,6 @@ public class CoinChange {
         if(m<0&&n>0)
             return 0;
 
-        return split(n-a[m],a,m)+split(n,a,m-1);
+        return split(n-a[m],a,m)+split(n,a,m-1); // if each coin can be used only once, return split(n-a[m],a,m-1)+split(n,a,m-1)
     }
 }
