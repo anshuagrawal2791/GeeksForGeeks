@@ -26,12 +26,12 @@ public class Knapsack {
 
         for(int i=0;i<n;i++)
             values[i]=scan.nextInt();
-        System.out.println("maximum value by recursion :"+knapsack(weights,values,n-1,W));
+        System.out.println("maximum value by recursion :"+knapsack(weights,values,n,W));
         System.out.println("maximum value by dp :"+knapsack2(weights,values,n,W));
         System.out.println("maximum value by optimised dp :"+knapsack3(weights,values,n,W));
 
 
-        System.out.println("maximum value by recursion with repetition :"+knapsack4(weights,values,n-1,W));
+        System.out.println("maximum value by recursion with repetition :"+knapsack4(weights,values,n,W));
         System.out.println("maximum value by dp with repetition:"+knapsack5(weights,values,n,W));
         System.out.println("maximum value by optimised dp with repetition :"+knapsack6(weights,values,n,W));
     }
@@ -115,20 +115,25 @@ private static int knapsack5(int[] weights, int[] values, int n, int w) {
     }
 
     private static int knapsack(int[] weights, int[] values, int i, int w) {
-        if(w==0)
+        System.out.println(i+" "+w);
+        if(i==0||w==0)
             return 0;
-        if(i<0||w<0)
-            return 0;
-
-        return Math.max(values[i]+knapsack(weights,values,i-1,w-weights[i]),knapsack(weights,values,i-1,w)); ///if each value can be used more than once, return Math.max(values[i]+knapsack(weights,values,i,w-weights[i]),knapsack(weights,values,i-1,w));
+        if(weights[i-1]>w)
+            return knapsack(weights,values,i-1,w);
+        return Math.max(values[i-1]+knapsack(weights,values,i-1,w-weights[i-1]),knapsack(weights,values,i-1,w));
+//        if(i<0||w<0)
+//            return 0;
+//
+//        int ans= Math.max(values[i]+knapsack(weights,values,i-1,w-weights[i]),knapsack(weights,values,i-1,w)); ///if each value can be used more than once, return Math.max(values[i]+knapsack(weights,values,i,w-weights[i]),knapsack(weights,values,i-1,w));
+//        System.out.println("------"+ans);
+//        return ans;
     }
     private static int knapsack4(int[] weights, int[] values, int i, int w) {
 //        System.out.println(i+" "+w);
-        if(w==0)
+        if(i==0||w==0)
             return 0;
-        if(i<0||w<0)
-            return 0;
-
-        return Math.max(values[i]+knapsack4(weights,values,i,w-weights[i]),knapsack4(weights,values,i-1,w)); ///if each value can be used more than once, return Math.max(values[i]+knapsack(weights,values,i,w-weights[i]),knapsack(weights,values,i-1,w));
+        if(weights[i-1]>w)
+            return knapsack(weights,values,i-1,w);
+        return Math.max(values[i-1]+knapsack4(weights,values,i,w-weights[i-1]),knapsack4(weights,values,i-1,w)); ///if each value can be used more than once, return Math.max(values[i]+knapsack(weights,values,i,w-weights[i]),knapsack(weights,values,i-1,w));
     }
 }
