@@ -115,7 +115,7 @@ private static int knapsack5(int[] weights, int[] values, int n, int w) {
     }
 
     private static int knapsack(int[] weights, int[] values, int i, int w) {
-        System.out.println(i+" "+w);
+//        System.out.println(i+" "+w);
         if(i==0||w==0)
             return 0;
         if(weights[i-1]>w)
