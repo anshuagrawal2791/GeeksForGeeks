@@ -24,7 +24,11 @@ public class LongestIncreasingSubsequence {
         for(int i=0;i<n;i++)
             System.out.print(b[i]+" ");
         System.out.println();
-        System.out.println("length of lis: "+b[0]);
+        int max = Integer.MIN_VALUE;
+        for(int i=0;i<b.length;i++)
+            if(b[i]>max)
+                max=b[i];
+        System.out.println("length of lis: "+max);
 
     }
 
