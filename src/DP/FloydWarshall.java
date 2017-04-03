@@ -1,5 +1,6 @@
 package DP;
 
+import java.util.Arrays;
 import java.util.Scanner;
 import java.util.Stack;
 
@@ -12,6 +13,7 @@ public class FloydWarshall {
         int v;
         int dist[][];
         int path[][];
+//        int parent[];
 
         public Graph(int v) {
             this.v=v;
@@ -30,14 +32,18 @@ public class FloydWarshall {
         private void allPairShortestPaths(){
             dist = new int[v][v];
             path = new int[v][v];
+//            parent = new int[v];
+//            Arrays.fill(parent,-1);
             for(int i=0;i<v;i++)
                 for(int j=0;j<v;j++)
                     dist[i][j]=a[i][j];
 
             for(int i=0;i<v;i++){
                 for(int j=0;j<v;j++){
-                    if(dist[i][j]!=Integer.MAX_VALUE&&dist[i][j]!=0)
-                        path[i][j]=i;
+                    if(dist[i][j]!=Integer.MAX_VALUE&&dist[i][j]!=0) {
+                        path[i][j] = i;
+//                        parent[j]=i;
+                    }
                     else
                         path[i][j]=Integer.MAX_VALUE;
                 }
@@ -48,6 +54,7 @@ public class FloydWarshall {
                         if(dist[i][k]!=Integer.MAX_VALUE&&dist[k][j]!=Integer.MAX_VALUE&&dist[i][k]+dist[k][j]<dist[i][j]) {
                             dist[i][j] = dist[i][k] + dist[k][j];
                             path[i][j]=path[k][j];
+//                            parent[j]=k;
                         }
                     }
                 }
@@ -98,6 +105,8 @@ public class FloydWarshall {
                 System.out.print(stack.pop()+" ");
             System.out.println();
         }
+
+
     }
     public static void main(String[] args) {
         Scanner scan = new Scanner(System.in);
