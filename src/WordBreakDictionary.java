@@ -24,6 +24,7 @@ public class WordBreakDictionary {
         wordBreak("iloveicecreamandmango","");
         System.out.println();
         wordBreak("ilovesamsungmobile","");
+        wordBreak("samsungandmangok","");
     }
 
 
